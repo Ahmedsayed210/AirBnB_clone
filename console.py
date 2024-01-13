@@ -9,19 +9,38 @@ class HBNBCommand(cmd.Cmd):
 
 
 
-    def do_quit(self,arg):
-        """To quit from the program"""
-        return True
+    # def do_quit(self,arg):
+    #     """To quit from the program"""
+    #     return True
 
-    def do_help_quit(self, arg):
-        print("Quit is a command to exit from the program")
-        return True
+    # def do_help_quit(self, arg):
+    #     print("Quit is a command to exit from the program")
+    #     return True
 
-    def do_EFO(self,arg):
-        print()
+    # def do_EFO(self,arg):
+    #     print()
 
-    def do_empty_line(self,arg):
+    # def do_empty_line(self,arg):
+    #     pass
+    
+    def emptyline(self):
+        """
+        Do nothing when an empty line is entered.
+        """
         pass
+
+    def do_EOF(self, arg):
+        """
+        EOF (Ctrl+D) signal to exit the program.
+        """
+        return True
+
+    def do_quit(self, arg):
+        """
+        Quit command to exit the program.
+        """
+        return True
+
 
     def do_create(self,arg):
         """Create a new instance"""
