@@ -40,7 +40,14 @@ class HBNBCommand(cmd.Cmd):
         """
         EOF (Ctrl+D) signal to exit the program.
         """
+        print()
         return True
+        
+    def do_help(self, arg):
+        """
+        Command to display the list of accessible commands.
+        """
+        super().do_help(arg)
 
     def do_quit(self, arg):
         """
@@ -179,5 +186,5 @@ class HBNBCommand(cmd.Cmd):
 
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     HBNBCommand().cmdloop()
