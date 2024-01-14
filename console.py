@@ -25,7 +25,7 @@ class HBNBCommand(cmd.Cmd):
         EOF (Ctrl+D) signal to exit the program.
         """
         return True
-        
+
     def do_help(self, arg):
         """
         Command to display the list of accessible commands.
@@ -38,14 +38,8 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-<<<<<<< HEAD
     def do_create(self, arg):
-=======
 
-
-
-    def do_create(self,arg):
->>>>>>> 5f5ce089fb4086f61ff671edc062d3380ec941a8
         """Create a new instance"""
         if not arg:
             print("** class name missing **")
@@ -171,12 +165,6 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
 
-<<<<<<< HEAD
-if __name__ == '__main__':
-=======
-
-
-
 if __name__ == "__main__":
->>>>>>> 5f5ce089fb4086f61ff671edc062d3380ec941a8
+
     HBNBCommand().cmdloop()
