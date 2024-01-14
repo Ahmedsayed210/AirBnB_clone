@@ -30,30 +30,31 @@ class HBNBCommand(cmd.Cmd):
     # def do_empty_line(self,arg):
     #     pass
     
-    def emptyline(self):
-        """
-        Do nothing when an empty line is entered.
-        """
-        pass
-
-    def do_EOF(self, arg):
-        """
-        EOF (Ctrl+D) signal to exit the program.
-        """
-        print()
+    def do_quit(self, arg):
+        """Quit command to exit the program"""
+        # Return True to stop the cmdloop
         return True
-        
+
+    # Define the EOF command to exit the program
+    def do_EOF(self, arg):
+        """EOF command to exit the program"""
+        # Print a new line
+        print()
+        # Return True to stop the cmdloop
+        return True
+
+    # Define the help command to show the available commands
     def do_help(self, arg):
-        """
-        Command to display the list of accessible commands.
-        """
+        """Help command to show the available commands"""
+        # Call the superclass method with the same name
         super().do_help(arg)
 
-    def do_quit(self, arg):
-        """
-        Quit command to exit the program.
-        """
-        return True
+    # Define an emptyline method to do nothing when an empty line is entered
+    def emptyline(self):
+        """Do nothing when an empty line is entered"""
+        pass
+
+
 
 
     def do_create(self,arg):
