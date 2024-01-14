@@ -2,12 +2,17 @@ import cmd
 import shlex
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.amenity import Amenity
+
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
-    classes = ["BaseModel", "User"]
+    classes = ["BaseModel", "User", "State", "Review", "Place", "Amenity"]
 
 
 
