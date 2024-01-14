@@ -1,11 +1,13 @@
 import cmd
 import shlex
 from models.base_model import BaseModel
+from models.user import User
 import models
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
+    classes = ["BaseModel", "User"]
 
 
 
