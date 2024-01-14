@@ -24,7 +24,8 @@ class HBNBCommand(cmd.Cmd):
         """
         EOF (Ctrl+D) signal to exit the program.
         """
-        return True
+        print()
+        exit()
 
     def do_help(self, arg):
         """
@@ -36,7 +37,7 @@ class HBNBCommand(cmd.Cmd):
         """
         Quit command to exit the program.
         """
-        return True
+        exit()
 
     def do_create(self, arg):
 
