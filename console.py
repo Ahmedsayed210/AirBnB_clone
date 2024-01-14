@@ -14,22 +14,6 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     classes = ["BaseModel", "User", "State", "Review", "Place", "Amenity"]
 
-
-
-    # def do_quit(self,arg):
-    #     """To quit from the program"""
-    #     return True
-
-    # def do_help_quit(self, arg):
-    #     print("Quit is a command to exit from the program")
-    #     return True
-
-    # def do_EFO(self,arg):
-    #     print()
-
-    # def do_empty_line(self,arg):
-    #     pass
-    
     def emptyline(self):
         """
         Do nothing when an empty line is entered.
@@ -48,8 +32,7 @@ class HBNBCommand(cmd.Cmd):
         """
         return True
 
-
-    def do_create(self,arg):
+    def do_create(self, arg):
         """Create a new instance"""
         if not arg:
             print("** class name missing **")
@@ -62,8 +45,7 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-
-    def do_show(self,arg):
+    def do_show(self, arg):
         """" """
         args = shlex.split(arg)
         if not args:
@@ -88,7 +70,7 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-    def do_destroy(self,arg):
+    def do_destroy(self, arg):
         """ """
         args = shlex.split(arg)
         if not args:
@@ -115,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-    def do_all(self,arg):
+    def do_all(self, arg):
         """"""
         args = shlex.split(arg)
         cls_list = []
@@ -174,9 +156,6 @@ class HBNBCommand(cmd.Cmd):
                 print("** instance id missing **")
         except NameError:
             print("** class doesn't exist **")
-
-
-
 
 
 if __name__ == '__main__':

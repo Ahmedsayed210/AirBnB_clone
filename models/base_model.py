@@ -4,15 +4,17 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
-    def __init__(self,*args,**kwargs):
+    def __init__(self, *args, **kwargs):
         if kwargs:
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f"))
+                    format = "%Y-%m-%dT%H:%M:%S.%f"
+                    setattr(self, key, datetime.strptime(value, format))
 
                 if key != "__class__":
-                    setattr(self, key,value)
+                    setattr(self, key, value)
 
                 if 'id' not in kwargs:
                     self.id = str(uuid.uuid4())
@@ -30,12 +32,10 @@ class BaseModel:
             self.updated_at = datetime.utcnow()
             models.storage.new(self)
 
-
     def save(self):
         """Method to save id to the storage"""
         self.updated_at = datetime.utcnow()
         models.storage.save()
-
 
     def to_dict(self):
         object_dic = self.__dict__.copy()
@@ -45,11 +45,9 @@ class BaseModel:
 
         return object_dic
 
-
-
-
     def __str__(self):
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}"\
+            .format(self.__class__.__name__, self.id, self.__dict__)
 
 
 if __name__ == "__main__":
@@ -64,7 +62,8 @@ if __name__ == "__main__":
     print(my_model_json)
     print("JSON of my_model:")
     for key in my_model_json.keys():
-        print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+        print("\t{}: ({}) - {}"
+              .format(key, type(my_model_json[key]), my_model_json[key]))
 
     print("--")
     my_new_model = BaseModel(**my_model_json)
