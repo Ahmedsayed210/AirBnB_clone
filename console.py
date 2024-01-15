@@ -75,63 +75,63 @@ class HBNBCommand(cmd.Cmd):
         except NameError:
             print("** class doesn't exist **")
 
-    # def do_destroy(self, arg):
-    #     """ """
-    #     args = shlex.split(arg)
-    #     if not args:
-    #         print("** class name missing **")
-
-    #     try:
-    #         class_name = args[0]
-    #         class_id = args[1]
-    #         key = "{}.{}".format(class_name, class_id)
-    #         obj = models.storage.all().get(key)
-
-    #         if obj:
-    #             del models.storage.all()[key]
-    #             models.storage.save()
-    #         else:
-    #             print("** no instance found **")
-
-    #     except IndexError:
-    #         if not class_name:
-    #             print("** class name missing **")
-    #         else:
-    #             print("** instance id missing **")
-
-    #     except NameError:
-    #         print("** class doesn't exist **")
     def do_destroy(self, arg):
-        """Deletes an instance based on the class name and id"""
-        if not arg:
-            print("** class name missing **")
-            return
-
-        args = arg.split()
-
+        """ """
+        args = shlex.split(arg)
         if not args:
-            print("** instance id missing **")
-            return
+            print("** class name missing **")
 
-        class_name = args[0]
+        try:
+            class_name = args[0]
+            class_id = args[1]
+            key = "{}.{}".format(class_name, class_id)
+            obj = models.storage.all().get(key)
 
-        if class_name not in classes:
+            if obj:
+                del models.storage.all()[key]
+                models.storage.save()
+            else:
+                print("** no instance found **")
+
+        except IndexError:
+            if not class_name:
+                print("** class name missing **")
+            else:
+                print("** instance id missing **")
+
+        except NameError:
             print("** class doesn't exist **")
-            return
+    # def do_destroy(self, arg):
+    #     """Deletes an instance based on the class name and id"""
+    #     if not arg:
+    #         print("** class name missing **")
+    #         return
 
-        if len(args) < 2:
-            print("** instance id missing **")
-            return
+    #     args = arg.split()
 
-        instance_id = args[1]
-        key = "{}.{}".format(class_name, instance_id)
+    #     if not args:
+    #         print("** instance id missing **")
+    #         return
 
-        if key not in models.storage.all():
-            print("** no instance found **")
-            return
+    #     class_name = args[0]
 
-        del models.storage.all()[key]
-        models.storage.save()
+    #     if class_name not in classes:
+    #         print("** class doesn't exist **")
+    #         return
+
+    #     if len(args) < 2:
+    #         print("** instance id missing **")
+    #         return
+
+    #     instance_id = args[1]
+    #     key = "{}.{}".format(class_name, instance_id)
+
+    #     if key not in models.storage.all():
+    #         print("** no instance found **")
+    #         return
+
+    #     del models.storage.all()[key]
+    #     models.storage.save()
 
     def do_all(self, arg):
         """"""
