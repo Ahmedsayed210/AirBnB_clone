@@ -157,6 +157,13 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
 
+        instances = models.storage.all().values()
+        class_instances = [instance for instance in instances
+                           if instance.__class__.__name__ == class_name]
+
+        # Print string representations of instances
+        print([str(instance) for instance in class_instances])
+
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
         args = shlex.split(arg)
