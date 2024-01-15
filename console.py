@@ -133,35 +133,56 @@ class HBNBCommand(cmd.Cmd):
     #     del models.storage.all()[key]
     #     models.storage.save()
 
+    # def do_all(self, arg):
+    #     """"""
+    #     args = shlex.split(arg)
+    #     cls_list = []
+    #     if not args:
+    #         for obj in models.storage.all().values():
+    #             cls_list.append(str(obj))
+    #         print(cls_list)
+
+    #     else:
+    #         try:
+    #             class_name = args[0]
+    #             for key, obj in models.storage.all().items():
+    #                 if class_name == key.split('.')[0]:
+    #                     cls_list.append(str(obj))
+
+    #                 if cls_list:
+    #                     print(cls_list)
+    #                 else:
+    #                     print("** class doesn't exist **")
+
+    #         except NameError:
+    #             print("** class doesn't exist **")
+
+    #     instances = models.storage.all().values()
+    #     class_instances = [instance for instance in instances
+    #                        if instance.__class__.__name__ == class_name]
+
+    #     # Print string representations of instances
+    #     print([str(instance) for instance in class_instances])
     def do_all(self, arg):
-        """"""
-        args = shlex.split(arg)
-        cls_list = []
+        """Prints all string based on the class name"""
+        args = arg.split()
+
         if not args:
-            for obj in models.storage.all().values():
-                cls_list.append(str(obj))
-            print(cls_list)
+            print("** class name missing **")
+            return
 
-        else:
-            try:
-                class_name = args[0]
-                for key, obj in models.storage.all().items():
-                    if class_name == key.split('.')[0]:
-                        cls_list.append(str(obj))
+        class_name = args[0]
 
-                    if cls_list:
-                        print(cls_list)
-                    else:
-                        print("** class doesn't exist **")
+        if class_name not in classes:
+            print("** class doesn't exist **")
+            return
 
-            except NameError:
-                print("** class doesn't exist **")
-
+        # Retrieve all instances of the specified class
         instances = models.storage.all().values()
         class_instances = [instance for instance in instances
                            if instance.__class__.__name__ == class_name]
 
-        # Print string representations of instances
+        # Print string representations of instances, including new IDs
         print([str(instance) for instance in class_instances])
 
     def do_update(self, arg):
