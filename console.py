@@ -157,41 +157,89 @@ class HBNBCommand(cmd.Cmd):
             except NameError:
                 print("** class doesn't exist **")
 
+    # def do_update(self, arg):
+    #     """Updates an instance based on the class name and id"""
+    #     args = shlex.split(arg)
+    #     if not args:
+    #         print("** class name missing **")
+    #         return
+    #     try:
+    #         class_name = args[0]
+    #         obj_id = args[1]
+    #         key = "{}.{}".format(class_name, obj_id)
+    #         obj = models.storage.all().get(key)
+    #         if obj:
+    #             if len(args) >= 3:
+    #                 attribute = args[2]
+    #                 if len(args) >= 4:
+    #                     value_str = args[3]
+    #                     if hasattr(obj, attribute):
+    #                         value = eval(value_str)
+    #                         setattr(obj, attribute, value)
+    #                         models.storage.save()
+    #                     else:
+    #                         print("** attribute name missing **")
+    #                 else:
+    #                     print("** value missing **")
+    #             else:
+    #                 print("** attribute name missing **")
+    #         else:
+    #             print("** no instance found **")
+    #     except IndexError:
+    #         if not class_name:
+    #             print("** class name missing **")
+    #         else:
+    #             print("** instance id missing **")
+    #     except NameError:
+    #         print("** class doesn't exist **")
+
     def do_update(self, arg):
         """Updates an instance based on the class name and id"""
-        args = shlex.split(arg)
+        args = arg.split()
+
         if not args:
             print("** class name missing **")
             return
-        try:
-            class_name = args[0]
-            obj_id = args[1]
-            key = "{}.{}".format(class_name, obj_id)
-            obj = models.storage.all().get(key)
-            if obj:
-                if len(args) >= 3:
-                    attribute = args[2]
-                    if len(args) >= 4:
-                        value_str = args[3]
-                        if hasattr(obj, attribute):
-                            value = eval(value_str)
-                            setattr(obj, attribute, value)
-                            models.storage.save()
-                        else:
-                            print("** attribute name missing **")
-                    else:
-                        print("** value missing **")
-                else:
-                    print("** attribute name missing **")
-            else:
-                print("** no instance found **")
-        except IndexError:
-            if not class_name:
-                print("** class name missing **")
-            else:
-                print("** instance id missing **")
-        except NameError:
+
+        class_name = args[0]
+
+        if class_name not in classes:
             print("** class doesn't exist **")
+            return
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        instance_id = args[1]
+        key = "{}.{}".format(class_name, instance_id)
+
+        if key not in storage.all():
+            print("** no instance found **")
+            return
+
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+
+        attribute_name = args[2]
+
+        if len(args) < 4:
+            print("** value missing **")
+            return
+
+        attribute_value = args[3]
+
+    # Get the object from storage
+        obj = storage.all()[key]
+
+    # Update the attribute value
+        setattr(obj, attribute_name, attribute_value)
+
+    # Update the 'updated_at' attribute
+        obj.save()
+
+        print(obj)
 
 
 if __name__ == "__main__":
