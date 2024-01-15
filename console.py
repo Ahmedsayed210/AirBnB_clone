@@ -12,7 +12,8 @@ import models
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
-    classes = ["BaseModel", "User", "State", "Review", "Place", "Amenity"]
+    classes = {"BaseModel": BaseModel, "User": User, "State": State,
+               "Review": Review, "Place": Place, "Amenity": Amenity}
 
     def emptyline(self):
         """
