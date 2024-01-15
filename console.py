@@ -20,24 +20,20 @@ class HBNBCommand(cmd.Cmd):
         """
         pass
 
+    def do_quit(self, arg):
+        """Exit the program"""
+        return True
+
     def do_EOF(self, arg):
-        """
-        EOF (Ctrl+D) signal to exit the program.
-        """
+        """Exit the program"""
         print()
-        exit()
+        return True
 
     def do_help(self, arg):
         """
         Command to display the list of accessible commands.
         """
         super().do_help(arg)
-
-    def do_quit(self, arg):
-        """
-        Quit command to exit the program.
-        """
-        exit()
 
     def do_create(self, arg):
 
