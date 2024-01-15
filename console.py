@@ -101,74 +101,17 @@ class HBNBCommand(cmd.Cmd):
 
         except NameError:
             print("** class doesn't exist **")
-    # def do_destroy(self, arg):
-    #     """Deletes an instance based on the class name and id"""
-    #     if not arg:
-    #         print("** class name missing **")
-    #         return
 
-    #     args = arg.split()
+    def do_destroy(self, arg):
+        """Deletes an inststance"""
+        if not arg:
+            print("** class name missing **")
+            return
 
-    #     if not args:
-    #         print("** instance id missing **")
-    #         return
-
-    #     class_name = args[0]
-
-    #     if class_name not in classes:
-    #         print("** class doesn't exist **")
-    #         return
-
-    #     if len(args) < 2:
-    #         print("** instance id missing **")
-    #         return
-
-    #     instance_id = args[1]
-    #     key = "{}.{}".format(class_name, instance_id)
-
-    #     if key not in models.storage.all():
-    #         print("** no instance found **")
-    #         return
-
-    #     del models.storage.all()[key]
-    #     models.storage.save()
-
-    # def do_all(self, arg):
-    #     """"""
-    #     args = shlex.split(arg)
-    #     cls_list = []
-    #     if not args:
-    #         for obj in models.storage.all().values():
-    #             cls_list.append(str(obj))
-    #         print(cls_list)
-
-    #     else:
-    #         try:
-    #             class_name = args[0]
-    #             for key, obj in models.storage.all().items():
-    #                 if class_name == key.split('.')[0]:
-    #                     cls_list.append(str(obj))
-
-    #                 if cls_list:
-    #                     print(cls_list)
-    #                 else:
-    #                     print("** class doesn't exist **")
-
-    #         except NameError:
-    #             print("** class doesn't exist **")
-
-    #     instances = models.storage.all().values()
-    #     class_instances = [instance for instance in instances
-    #                        if instance.__class__.__name__ == class_name]
-
-    #     # Print string representations of instances
-    #     print([str(instance) for instance in class_instances])
-    def do_all(self, arg):
-        """Prints all string based on the class name"""
         args = arg.split()
 
         if not args:
-            print("** class name missing **")
+            print("** instance id missing **")
             return
 
         class_name = args[0]
@@ -177,12 +120,49 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        # Retrieve all instances of the specified class
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+
+        instance_id = args[1]
+        key = "{}.{}".format(class_name, instance_id)
+
+        if key not in models.storage.all():
+            print("** no instance found **")
+            return
+
+        del models.storage.all()[key]
+        models.storage.save()
+
+    def do_all(self, arg):
+        """"""
+        args = shlex.split(arg)
+        cls_list = []
+        if not args:
+            for obj in models.storage.all().values():
+                cls_list.append(str(obj))
+            print(cls_list)
+
+        else:
+            try:
+                class_name = args[0]
+                for key, obj in models.storage.all().items():
+                    if class_name == key.split('.')[0]:
+                        cls_list.append(str(obj))
+
+                    if cls_list:
+                        print(cls_list)
+                    else:
+                        print("** class doesn't exist **")
+
+            except NameError:
+                print("** class doesn't exist **")
+
         instances = models.storage.all().values()
         class_instances = [instance for instance in instances
                            if instance.__class__.__name__ == class_name]
 
-        # Print string representations of instances, including new IDs
+        # Print string representations of instances
         print([str(instance) for instance in class_instances])
 
     def do_update(self, arg):
