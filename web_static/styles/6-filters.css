@@ -44,3 +44,44 @@ section.filters > button:hover {
     font-size: 14px;
     margin: 0 0 5px 0;
 }
+
+.popover{
+    display: none;
+    position: relative;
+    left: -51px;
+    background-color: #FAFAFA;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    z-index: 1;
+    padding: 30px 50px 30px 0;
+    margin-top: 17px;
+}
+.popover, .popover ul {
+    list-style-type: none;
+}
+.locations:hover .popover{
+    display: block;
+}
+.amenities:hover .popover{
+    display: block;
+}
+.popover h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+.locations  .popover  li {
+    margin-bottom: 30px;
+    margin-left: 30px;
+}
+.locations  .popover  li  ul {
+    padding-left: 20px;
+}
+.locations  .popover  li ul  li {
+    margin-bottom: 10px;
+}
+
+.amenities  .popover  li {
+    margin-left: 50px;
+    margin-bottom: 10px;
+}
