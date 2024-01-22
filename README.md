@@ -9,5 +9,5 @@ To get started with the HBNB Console, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/hbnb_console.git
+   git clone https://github.com/Ahmedsayed210/AirBnB_clone.git
    cd hbnb_console
